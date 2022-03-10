@@ -51,58 +51,14 @@ void bentuk_awal()
     }
 }
 
-// Input Double Linked List Terbalik:
-bool apakahBentukAwalTerbalik = false;
-
-void bentuk_awal_terbalik()
-{
-    struct DoubleLinkedNode *temp;
-    int j = 0;
-    char jawab[2];
-    while (1)
-    {
-        temp = (struct DoubleLinkedNode *)malloc(sizeof(struct DoubleLinkedNode));
-
-        printf("Masukkan bilangan :");
-        scanf("%d", &temp->bil);
-        if (j == 0)
-        {
-            temp->next = NULL;
-            temp->prev = NULL;
-            head = temp;
-            tail = temp;
-        }
-        else
-        {
-            head->next = temp;
-            temp->next = NULL;
-            temp->prev = head;
-            head = temp;
-        }
-
-        printf("Ada data lagi? (y):");
-        scanf("%s", &jawab);
-        if ((strcmp(jawab, "Y") == 0) || (strcmp(jawab, "y") == 0))
-        {
-            j++;
-            continue;
-        }
-        else
-            break;
-    }
-}
-
 // Percobaan 2: Fungsi untuk Menampilkan Double Linked list dengan Metode LIFO
 void tampil_list_lifo()
 {
     printf("--- Tampil List LIFO ---\n");
     struct DoubleLinkedNode *lifo;
     printf("Data Bilangan yang Telah Diinputkan secara LIFO :\n");
-    if (apakahBentukAwalTerbalik)
-        lifo = head;
-    else
-        lifo = tail;
-    
+    lifo = tail;
+
     while (lifo != NULL)
     {
         printf("%d\t", lifo->bil);
@@ -117,11 +73,8 @@ void tampil_list_fifo()
     printf("--- Tampil List FIFO ---\n");
     struct DoubleLinkedNode *fifo;
     printf("Data Bilangan yang Telah Diinputkan secara FIFO :\n");
-    if (apakahBentukAwalTerbalik)
-        fifo = tail;
-    else
-        fifo = head;
-    
+    fifo = head;
+
     while (fifo != NULL)
     {
         printf("%d\t", fifo->bil);
@@ -200,31 +153,8 @@ void hapus_simpul()
 int main()
 {
     printf(">>> Silahkan input data doubly linked list:\n");
-    printf("1. Bentuk awal dari head\n");
-    printf("2. Bentuk awal dari tail\n");
-    printf("Pilihan: ");
-    string pilihan;
-    cin >> pilihan;
-    
-    if (pilihan == "1")
-    {
-        system("cls");
-        bentuk_awal();
-        system("cls");
-    }
-    else if (pilihan == "2")
-    {
-        system("cls");
-        apakahBentukAwalTerbalik = true;
-        bentuk_awal_terbalik();
-        system("cls");
-    }
-    else
-    {
-        printf("Pilih antara 1-2\n");
-        system("pause");
-        system("cls");
-    }
+    bentuk_awal();
+    system("cls");
 
     while (1)
     {
